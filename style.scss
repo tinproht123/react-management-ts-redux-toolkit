@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+$black: #000;
+$dark: #292b2c;
+$grey: #bbb;
+$danger: #dc3545;
+
+$mobile-width: 480px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin flex($jc, $ai) {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
+@mixin mobile {
+  @media (max-width: $mobile-width) {
+    @content;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  line-height: 1.4;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.6rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 10rem auto;
+  border: 1px solid;
+  box-shadow: 0 0 15px rgba($black, 0.2);
+  padding: 1.5rem;
+
+  .form {
+    @include flex('', '');
+    flex-wrap: wrap;
+    @include mobile {
+      flex-direction: column;
+    }
+    .form-control {
+      width: 50%;
+      padding: 1rem;
+      @include flex(space-between, center);
+      @include mobile {
+        width: 100%;
+      }
+
+      label {
+        width: 40%;
+      }
+      input {
+        width: 50%;
+        height: 25px;
+        padding-inline-start: 0.4rem;
+      }
+      select {
+        width: 50%;
+        text-transform: capitalize;
+        height: 25px;
+      }
+    }
+  }
+
+  .button-container {
+    text-align: center;
+    margin: 1.5em;
+    padding: 0;
+    width: 100%;
+
+    button {
+      padding: 0.5em 1em;
+      color: #fff;
+      background: $dark;
+      border: none;
+      border-radius: 3px;
+      font-size: 1.6rem;
+      text-transform: capitalize;
+      margin: 0 1.2em;
+      cursor: pointer;
+      @include mobile {
+        display: inline;
+        width: 100%;
+        margin: 0.5em 0;
+      }
+
+      &:hover {
+        background: lighten($dark, 20%);
+      }
+
+      &.deleting {
+        background: $danger;
+      }
+    }
+    p {
+      letter-spacing: 2px;
+      margin-top: 2em;
+    }
+  }
+  table {
+    width: 100%;
+    border: 1px solid;
+    tr {
+      th {
+        border: 1px solid;
+      }
+
+      td {
+        text-align: center;
+        border: 1px solid;
+        padding: 0 0.3em;
+
+        &:first-child {
+          font-weight: 600;
+        }
+      }
+      &:nth-child(2n) {
+        background: $grey;
+      }
+    }
+  }
+}
